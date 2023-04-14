@@ -36,4 +36,17 @@ public class HomeController {
 		map.put("books", books);
 		return "home";
 	}
+	
+	@GetMapping("/")
+	public String indexPage(HttpServletRequest request, Map<String,List<Book>> map) {
+		System.out.println("Home controller entered");
+		List<Book> books = this.bookService.getAllBooks();
+		System.out.println(books);
+		//map.addAttribute("books", books);
+		//List<User> users = this.repo.getUsers();
+		//System.out.println(users);
+		//map.put("firstBook", "this is example book");
+		map.put("books", books);
+		return "index";
+	}
 }

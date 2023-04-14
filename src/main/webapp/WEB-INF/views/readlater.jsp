@@ -22,7 +22,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="index.jsp">CMS</a>
+			
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -33,15 +33,15 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="index.jsp">Home</a></li>
+						aria-current="page" href="${pageContext.servletContext.contextPath}/">Home</a></li>
 					<%
 					String id = (String) session.getAttribute("email");
 
 					if (id == null) {
 					%>
-					<li class="nav-item"><a class="nav-link" href="login">Login</a>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath}/login">Login</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="register">Register</a>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath}/register">Register</a>
 					</li>
 					<%
 					}
@@ -70,6 +70,11 @@
 			</div>
 		</div>
 	</nav>
+	<%
+		String id2 = (String) session.getAttribute("email");
+
+		if (id2 != null) {
+		%>
 	<!--  http://localhost:8080/SpringMVCDemo/greet  -->
 	<h1>Welcome ${sessionScope.username } to your Read Later List</h1>
 	<div class="row">
@@ -101,6 +106,15 @@
 			</div>
 		</c:forEach>
 	</div>
+	<%} else { %>
+	
+		<div>
+			<h2>Please login first</h2>
+			<a href="${pageContext.servletContext.contextPath}/login">
+			<button >Login</button>
+			</a>
+		</div>
+	<%} %>
 
 </body>
 </html>

@@ -54,7 +54,7 @@ public class LoginCOntroller {
 		}
 		session.removeAttribute("email");
 		session.invalidate();
-		return "redirect:index.jsp";
+		return "redirect:/";
 	}
 	
 	@PostMapping("/login")

@@ -47,8 +47,8 @@ p {
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="index.jsp">Home</a></li>
+					<!-- <li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="index.jsp">Home</a></li> -->
 					<%
 					String id = (String) session.getAttribute("email");
 		
@@ -59,7 +59,8 @@ p {
 					<li class="nav-item"><a class="nav-link" href="register">Register</a>
 					</li>
 					<%}else{ %>
-					<li class="nav-item"><a class="nav-link" href="logout">Logout</a>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath}/dashboard">Dashboard</a>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath}/logout">Logout</a>
 					</li>
 					<form class="form-inline my-2 my-lg-0">
 
@@ -77,11 +78,24 @@ p {
 
 	<h1 class='text-center heading'>Book Store</h1>
 	<!-- <img src='resources/images/torn.jpeg'/> -->
-	<div class="container-fluid d-flex p-2">
+	<%-- <div class="container-fluid d-flex p-2">
 	<a href="${pageContext.servletContext.contextPath}/home">
 	<button type="button" class="btn btn-primary btn-lg">Click To See All Books</button>
 	</a>
 	
+	</div> --%>
+	<div class="row">
+		<c:forEach items="${books}" var="book">
+			
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <div class="d-flex flex-row mb-3"><img src="https://i.imgur.com/ccMhxvC.png" width="70">
+                        <div class="d-flex flex-column ml-2"><span>${book.bookname}</span><span class="text-black-50">${book.authorname} </span><span class="ratings"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span></div>
+                    </div>
+                   </div>
+            </div>
+		</c:forEach>
+		</div>
 	</div>
 	
 </body>

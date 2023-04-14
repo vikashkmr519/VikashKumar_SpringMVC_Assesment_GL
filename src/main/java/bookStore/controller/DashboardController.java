@@ -54,15 +54,25 @@ public class DashboardController {
 	
 	@GetMapping("/likedbook/page")
 	public String openLikedBooks(Map<String, List<Book>> map, HttpSession session) {
+		if(session !=null) {
+			if(session.getAttribute("email")!=null) {
 		List<Integer> listOfBookId = this.lbService.fetchBookIdForUser(session.getAttribute("email").toString());
 		map.put("books",bookService.booksForBookIdsAndEmail(listOfBookId));
+			}
+		}
 		return "likedbooks";
+		
 	}
 	
 	@GetMapping("/readlater/page")
 	public String openReadLater(Map<String, List<Book>> map, HttpSession session) {
+		if(session!=null) {
+			if(session.getAttribute("email")!=null) {
 		List<Integer> listOfBookId = this.rlService.fetchAllListForUser(session.getAttribute("email").toString());
+		
 		map.put("books",bookService.booksForBookIdsAndEmail(listOfBookId));
+			}
+		}
 		return "readlater";
 	}
 	
